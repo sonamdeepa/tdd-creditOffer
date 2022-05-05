@@ -3,17 +3,18 @@ package com.example.bankapplication;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class BankTest {
 
-  // sHOW COLOURS
-  // RED
-  //REFACTOR
+
   @Test
-  public void testEconomyCreditOfferUsualCustomer(){
+  public void testEconomyCreditOfferUsualCustomer() throws Exception {
     CreditOffer economyCreditOffer = new EconomyCreditOffer("1");
     Customer sonam = new Customer("Sonam",false);
+
+    Customer sonam2 = new Customer("",false);
 
     assertEquals("1",economyCreditOffer.getId());
     assertEquals(true,economyCreditOffer.addCustomer(sonam));
@@ -22,10 +23,12 @@ public class BankTest {
 
     assertEquals(true,economyCreditOffer.removeCustomer(sonam));
     assertEquals(0,economyCreditOffer.getCustomersList().size());
+
+    assertThrows(Exception.class,()->economyCreditOffer.addCustomer(sonam2));
   }
 
   @Test
-  public void testEconomyCreditOfferVipCustomer(){
+  public void testEconomyCreditOfferVipCustomer() throws Exception {
     CreditOffer econmomyCreditOffer = new EconomyCreditOffer("1");
     Customer deepa = new Customer("Deepa",true);
 
@@ -40,7 +43,7 @@ public class BankTest {
 
 
   @Test
-  public void testBusinessCreditOfferUsualCustomer(){
+  public void testBusinessCreditOfferUsualCustomer() throws Exception {
     CreditOffer businessCreditOffer = new BusinessCreditOffer("2");
 
     Customer sonam = new Customer("Sonam",false);
@@ -53,7 +56,7 @@ public class BankTest {
   }
 
   @Test
-  public void testBusinessCreditOfferVipCustomer(){
+  public void testBusinessCreditOfferVipCustomer() throws Exception {
     CreditOffer businessCreditOffer = new BusinessCreditOffer("2");
 
     Customer deepa = new Customer("Deepa",true);
